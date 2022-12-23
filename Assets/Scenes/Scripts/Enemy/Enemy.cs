@@ -29,7 +29,7 @@ public partial class Enemy : MonoBehaviour, ICameraEvent
     // Update is called once per frame
     void Update()
     {
-        Rigidbody.velocity = Transform.up.normalized * 5.0f;
+        Rigidbody.velocity = Transform.up.normalized * 4.0f;
         return;
     }
 }
