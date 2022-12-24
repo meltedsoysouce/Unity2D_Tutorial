@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public partial class Enemy : MonoBehaviour, ICameraEvent
 {
@@ -31,5 +32,16 @@ public partial class Enemy : MonoBehaviour, ICameraEvent
     {
         Rigidbody.velocity = Transform.up.normalized * 4.0f;
         return;
+    }
+
+    private void OnTriggerEnter2D(Collider2D pvCollision)
+    {
+        switch (pvCollision.gameObject.tag)
+        {
+            case "Bullet":
+                gameObject.SetActive(false);
+                SceneManager.LoadScene("GameClear");
+                return;
+        }
     }
 }
