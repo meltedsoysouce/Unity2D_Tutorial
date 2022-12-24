@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour, IControlEvent
+public partial class Bullet : MonoBehaviour, IControlEvent
 {
     private Rigidbody2D Rigidbody { get; set; }
     private Renderer Renderer { get; set; }
