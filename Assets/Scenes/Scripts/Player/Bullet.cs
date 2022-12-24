@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public partial class Bullet : MonoBehaviour, IControlEvent
 {
     private Rigidbody2D Rigidbody { get; set; }
-    private Renderer Renderer { get; set; }
-    // �e�Q�[���I�u�W�F�N�g
+    private Renderer Renderer { get; set; }    
     private GameObject Player { get; set; }
 
     private bool IsLaunched { get; set; } = false;
@@ -49,10 +49,5 @@ public partial class Bullet : MonoBehaviour, IControlEvent
         }
 
         return;
-    }
-
-    private void OnTriggerEnter2D(Collider2D pvCollision)
-    {
-
     }
 }

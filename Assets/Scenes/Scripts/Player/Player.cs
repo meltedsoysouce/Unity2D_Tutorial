@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using System;
 using UnityEngine.PlayerLoop;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -65,5 +66,20 @@ public class Player : MonoBehaviour
     {
         None = -1,
         Launch,
+    }
+
+    private void OnTriggerEnter2D(Collider2D pvCollision)
+    {
+        switch (pvCollision.gameObject.tag)
+        {
+            case "Enemy":
+                OnHitEnemy();
+                return;
+        }        
+    }
+
+    private void OnHitEnemy()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 }
