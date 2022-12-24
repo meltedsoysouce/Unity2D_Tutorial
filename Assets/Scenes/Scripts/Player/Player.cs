@@ -7,6 +7,9 @@ using System;
 using UnityEngine.PlayerLoop;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System.Linq;
+using TMPro.EditorUtilities;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 
 public partial class Player : MonoBehaviour, ICameraEvent
 {
@@ -31,16 +34,19 @@ public partial class Player : MonoBehaviour, ICameraEvent
 
     private void MoveMySelf()
     {
+        Vector2[] diff_vec = new Vector2[4];
+        Rigidbody.velocity = new();
+
         if (Input.anyKey == true)
         {
             if (Input.GetKey(KeyCode.A))
-                Rigidbody.velocity = new() { x = -5.0f, y = 0.0f };
+                diff_vec[0] = new() { x = -5.0f, y = 0.0f };
             if (Input.GetKey(KeyCode.D))
-                Rigidbody.velocity = new() { x = 5.0f, y = 0.0f };
+                diff_vec[1] = new() { x = 5.0f, y = 0.0f };
             if (Input.GetKey(KeyCode.W))
-                Rigidbody.velocity = new() { x = 0.0f, y = 5.0f };
+                diff_vec[2] = new() { x = 0.0f, y = 5.0f };
             if (Input.GetKey(KeyCode.S))
-                Rigidbody.velocity = new() { x = 0.0f, y = -5.0f };
+                diff_vec[3] = new() { x = 0.0f, y = -5.0f };
             // Space‚Å’eŠÛ”­ŽË
             if (Input.GetKey(KeyCode.Space))
             {
@@ -48,9 +54,19 @@ public partial class Player : MonoBehaviour, ICameraEvent
                 LaunchBullet();
             }
 
+            Rigidbody.velocity += Sum_Diff(diff_vec);
         }
         else
             Rigidbody.velocity = new() { x = 0f, y = 0f };
+    }
+
+    private Vector2 Sum_Diff(Vector2[] pvDiffvec)
+    {
+        Vector2 result = new();
+        foreach (var i in pvDiffvec)
+            result += i;
+
+        return result;
     }
     
     private void LaunchBullet()
