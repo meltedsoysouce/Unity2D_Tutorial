@@ -8,7 +8,7 @@ using UnityEngine.PlayerLoop;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour
+public partial class Player : MonoBehaviour, ICameraEvent
 {
     private Rigidbody2D Rigidbody { get; set; }
     private GameObject Bullet { get; set; }
